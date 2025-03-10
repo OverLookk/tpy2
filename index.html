@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>welcome to my website</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      margin: 0;
+    }
+    header p {
+      margin: 5px 0;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px 0;
+    }
+    .gallery-item {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      border-radius: 6px;
+    }
+    .gallery-item img {
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .slider {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 6px;
+      max-height: 400px;
+    }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slides img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    .controls {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .controls button {
+      padding: 6px 10px;
+      margin: 0 5px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      background-color: #007BFF;
+      color: #fff;
+      border-radius: 4px;
+    }
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+    @media (max-width:600px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        padding: 10px 0;
+      }
+      header {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>welcome to my website</h1>
+    <p>hi this is my website</p>
+    <p>discord <a href="http://discord.com/users/595723074729672705">@.overlook</a></p>
+  </header>
+  
+  <section class="gallery">
+    <div class="gallery-item">
+      <img src="image1.jpeg" alt="Image 1">
+      <p>the qr code that brought you here pretty cool huh</p>
+    </div>
+    <div class="gallery-item">
+      <img src="image2.jpeg" alt="Image 2">
+      <p>duck army!</p>
+    </div>
+    <div class="gallery-item">
+      <img src="image3.jpeg" alt="Image 3">
+      <p>my park</p>
+    </div>
+    <div class="gallery-item">
+      <img src="image4.jpeg" alt="Image 4">
+      <p>christ the redeemer statue</p>
+    </div>
+    <div class="gallery-item">
+      <div class="slider">
+        <div class="slides" id="slides">
+          <img src="image5.jpeg" alt="Image 5">
+          <img src="image6.jpeg" alt="Image 6">
+          <img src="image7.jpeg" alt="Image 7">
+        </div>
+      </div>
+      <p>blocky atlas statue holding a boulder</p>
+      <div class="controls">
+        <button onclick="prevSlide()">◀ Prev</button>
+        <button onclick="nextSlide()">Next ▶</button>
+      </div>
+    </div>
+  </section>
+  
+  <script>
+    let currentIndex = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    
+    function showSlide(index) {
+      slides.style.transform = 'translateX(' + (-index * 100) + '%)';
+    }
+    
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      showSlide(currentIndex);
+    }
+    
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      showSlide(currentIndex);
+    }
+    
+    showSlide(currentIndex);
+    setInterval(nextSlide, 4000);
+  </script>
+</body>
+</html>
